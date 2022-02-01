@@ -8,7 +8,6 @@ import { useTheme } from '../context/ThemeContext';
 import { InitialRouteContext } from '../context/initialRoute';
 import AddCashSheet from '../screens/AddCashSheet';
 import AddTokenSheet from '../screens/AddTokenSheet';
-import AssignEnsRecordsSheet from '../screens/AssignEnsRecordsSheet';
 import AvatarBuilder from '../screens/AvatarBuilder';
 import BackupSheet from '../screens/BackupSheet';
 import ChangeWalletSheet from '../screens/ChangeWalletSheet';
@@ -19,7 +18,6 @@ import ExplainSheet from '../screens/ExplainSheet';
 import ImportSeedPhraseSheet from '../screens/ImportSeedPhraseSheet';
 import ModalScreen from '../screens/ModalScreen';
 import ReceiveModal from '../screens/ReceiveModal';
-import RegisterEnsSheet from '../screens/RegisterEnsSheet';
 import RestoreSheet from '../screens/RestoreSheet';
 import SavingsSheet from '../screens/SavingsSheet';
 import SendConfirmationSheet from '../screens/SendConfirmationSheet';
@@ -33,6 +31,7 @@ import WalletConnectRedirectSheet from '../screens/WalletConnectRedirectSheet';
 import WalletDiagnosticsSheet from '../screens/WalletDiagnosticsSheet';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import WithdrawModal from '../screens/WithdrawModal';
+import RegisterENSNavigator from './RegisterENSNavigator';
 import { SwipeNavigator } from './SwipeNavigator';
 import {
   addTokenSheetConfig,
@@ -40,6 +39,7 @@ import {
   basicSheetConfig,
   customGasSheetConfig,
   defaultScreenStackOptions,
+  ensRegistrationSheetConfig,
   expandedAssetSheetConfig,
   expandedAssetSheetConfigWithLimit,
   explainSheetConfig,
@@ -80,24 +80,6 @@ function SendFlowNavigator() {
         component={SendSheet}
         name={Routes.SEND_SHEET}
         options={sheetPreset}
-      />
-    </Stack.Navigator>
-  );
-}
-
-function RegisterENSFlowNavigator() {
-  return (
-    <Stack.Navigator
-      {...stackNavigationConfig}
-      initialRouteName={Routes.REGISTER_ENS_SHEET}
-    >
-      <Stack.Screen
-        component={RegisterEnsSheet}
-        name={Routes.REGISTER_ENS_SHEET}
-      />
-      <Stack.Screen
-        component={AssignEnsRecordsSheet}
-        name={Routes.ASSIGN_ENS_RECORDS_SHEET}
       />
     </Stack.Navigator>
   );
@@ -399,18 +381,19 @@ function NativeStackNavigator() {
         name={Routes.SWAP_DETAILS_SHEET}
         {...expandedAssetSheetConfig}
       />
+      {PROFILES_ENABLED === 'YES' && (
+        <NativeStack.Screen
+          component={RegisterENSNavigator}
+          name={Routes.REGISTER_ENS_NAVIGATOR}
+          {...ensRegistrationSheetConfig}
+        />
+      )}
       {isNativeStackAvailable ? (
         <>
           <NativeStack.Screen
             component={SendFlowNavigator}
             name={Routes.SEND_SHEET_NAVIGATOR}
           />
-          {PROFILES_ENABLED === 'YES' && (
-            <NativeStack.Screen
-              component={RegisterENSFlowNavigator}
-              name={Routes.REGISTER_ENS_SHEET_NAVIGATOR}
-            />
-          )}
           <NativeStack.Screen
             component={ImportSeedPhraseFlowNavigator}
             name={Routes.IMPORT_SEED_PHRASE_SHEET_NAVIGATOR}

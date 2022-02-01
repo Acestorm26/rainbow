@@ -284,7 +284,7 @@ function BSNavigator() {
       {PROFILES_ENABLED === 'YES' && (
         <BSStack.Screen
           component={RegisterENSFlowNavigator}
-          name={Routes.REGISTER_ENS_SHEET_NAVIGATOR}
+          name={Routes.REGISTER_ENS_NAVIGATOR}
         />
       )}
       <BSStack.Screen

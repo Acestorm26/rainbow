@@ -1,23 +1,23 @@
 import React from 'react';
-import { SlackSheet } from '../components/sheet';
-import { Box, Text } from '@rainbow-me/design-system';
-
-import { useDimensions } from '@rainbow-me/hooks';
+import { Box, Heading, Stack, Text } from '@rainbow-me/design-system';
 
 export default function AssignEnsRecordsSheet() {
-  const { height: deviceHeight } = useDimensions();
-
   return (
     <Box background="body" flexGrow={1}>
-      <SlackSheet
-        bottomInset={42}
-        limitScrollViewContent
-        {...(ios
-          ? { height: '100%' }
-          : { additionalTopPadding: true, contentHeight: deviceHeight })}
-      >
-        <Text>Hello world</Text>
-      </SlackSheet>
+      <Box flexGrow={1} paddingTop="30px">
+        <Stack alignHorizontal="center" space="15px">
+          <Heading size="26px" weight="heavy">
+            alexander.eth
+          </Heading>
+          <Text
+            color={{ custom: 'rgba(152, 117, 215, 1)' }}
+            size="16px"
+            weight="heavy"
+          >
+            Create your profile
+          </Text>
+        </Stack>
+      </Box>
     </Box>
   );
 }

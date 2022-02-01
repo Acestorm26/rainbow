@@ -132,6 +132,16 @@ export const sendConfirmationSheetConfig = {
   },
 };
 
+export const ensRegistrationSheetConfig = {
+  options: ({ route: { params = {} } }) => ({
+    ...buildCoolModalConfig({
+      ...params,
+      backgroundOpacity: 1,
+      springDamping: 1,
+    }),
+  }),
+};
+
 export const explainSheetConfig = {
   options: ({
     route: { params = { network: networkInfo[networkTypes.mainnet].name } },
