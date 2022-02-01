@@ -48,8 +48,10 @@ export default function SearchEnsSheet() {
   const isSuccess = registration && status === 'success';
 
   const handlePressContinue = useCallback(() => {
-    navigate(Routes.ASSIGN_ENS_RECORDS_SHEET);
-  }, [navigate]);
+    navigate(Routes.ASSIGN_ENS_RECORDS_SHEET, {
+      ensName: searchQuery,
+    });
+  }, [navigate, searchQuery]);
 
   const state = useMemo(() => {
     if (isSuccess) {
